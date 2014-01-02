@@ -1,0 +1,5 @@
+header h1, .logo, header h2, header li, header nav, 
+{
+    display: inline;
+    zoom: 1;
+}
