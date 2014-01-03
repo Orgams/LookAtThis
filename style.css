@@ -34,6 +34,7 @@
 }
 .erreur{
   color: red;
+  font-weight:bold;
 }
 .logo{
   font-family: 'entyporegular';

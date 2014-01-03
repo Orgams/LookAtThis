@@ -5,10 +5,11 @@
     <?php 
       include("enTete.php");
     ?>
-    <?php if(isSet($_GET['errUrlVide'])){ ?>
-      <td class=erreur>L'URL du lien ne peut être vide</td>
-    <?php } ?>
     <form method="post" name="formulaire" action="ajoutLien.php">
+      <?php if(isSet($_GET['errUrlVide'])){ ?>
+        <span class=erreur>L'URL du lien ne peut être vide</span>
+      <?php } ?>
+      <br/>
       <label for="url">URL</label>
       <input type="text" name="url" id="url"/><br/>
       <?php
