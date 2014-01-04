@@ -11,7 +11,8 @@
                               FROM lien_groupe LG
                               INNER JOIN lien ON LG.ID_lien = lien.ID
                               INNER JOIN site ON lien.ID_site = site.ID
-                              WHERE LG.ID_groupe IN ($place_holders)");
+                              WHERE LG.vue = false
+                              AND LG.ID_groupe IN ($place_holders)");
         $req->execute($_SESSION['groupe']);
       }else{
         $req = $bdd->prepare("SELECT DISTINCT lien.ID, lien.url, site.url AS site, lien.titre, site.favicone, site.couleur
