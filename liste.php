@@ -14,11 +14,12 @@
                               WHERE LG.ID_groupe IN ($place_holders)");
         $req->execute($_SESSION['groupe']);
       }else{
-        $req = $bdd->query("SELECT DISTINCT lien.ID, lien.url, site.url AS site, lien.titre, site.favicone, site.couleur
+        $req = $bdd->prepare("SELECT DISTINCT lien.ID, lien.url, site.url AS site, lien.titre, site.favicone, site.couleur
                             FROM lien
                             INNER JOIN utilisateur_lien AS UL ON lien.ID = UL.ID_lien
-                            INNER JOIN site ON lien.ID_site = site.ID");
-        $req->execute();
+                            INNER JOIN site ON lien.ID_site = site.ID
+                            WHERE UL.ID_utilisateur = ?");
+        $req->execute(array($_SESSION['ID']));
       }
       while ($donnees = $req->fetch())
       {
