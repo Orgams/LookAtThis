@@ -14,14 +14,19 @@
                               WHERE LG.ID_groupe IN ($place_holders)");
         $req->execute($_SESSION['groupe']);
       }else{
-        $req = $bdd->query("SELECT DISTINCT lien.ID, lien.url, lien.site, lien.titre 
-                              FROM lien_groupe LG
-                              INNER JOIN lien ON LG.ID_lien = lien.ID");
+        $req = $bdd->query("SELECT DISTINCT lien.ID, lien.url, site.url AS site, lien.titre, site.favicone, site.couleur
+                            FROM lien
+                            INNER JOIN utilisateur_lien AS UL ON lien.ID = UL.ID_lien
+                            INNER JOIN site ON lien.ID_site = site.ID");
         $req->execute();
       }
       while ($donnees = $req->fetch())
       {
         $url =  $donnees['url'];
+        $titre = $donnees['titre'];
+        if($titre == ""){
+          $titre = $url;
+        }
         $site =  $donnees['site'];
         $favicone = $donnees['favicone'];
         $couleurFond = "rgba(".convertColor($donnees['couleur']).",0.3";
@@ -34,7 +39,7 @@
     ?>
         <section class=lien style="background:<?php echo $couleurFond ?>">
           <article>
-            <a href= <?php echo $url ?> target="_blank"> <img src="<?php echo $favicone ?>" /><?php echo $url ?></a>
+            <a href= <?php echo $url ?> target="_blank"> <img src="<?php echo $favicone ?>" /><?php echo $titre ?></a>
           </article>
           <aside>
             <a href= <?php echo $site ?> target="_blank"> <?php echo $site; ?></a><?php

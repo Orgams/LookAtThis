@@ -11,7 +11,7 @@
           <td><label for="nom">Nom du groupe</label></td>
           <td><input type="text" name="nom" id="nom"/></td>
           <?php if(isSet($_GET['errNomVide'])){ ?>
-            <td class=erreur>Le nom du groupe ne peut être vide</td>
+            <td class=erreur>Le nom du groupe ne peut Ãªtre vide</td>
           <?php } ?>
         </tr>
         <tr>
