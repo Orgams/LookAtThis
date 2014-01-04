@@ -99,7 +99,8 @@ section.informations .logo{
 }
 section.lien, section.groupe, form{
   border-bottom: 1px solid rgba(0,0,0,.05);
-  padding: 1em;
+  padding: 0.7em;
+  margin: 0.3em;
   position: relative;
   font-size: 1.2em;
 }
