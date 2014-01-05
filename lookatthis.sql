@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Dim 05 Janvier 2014 à 14:06
+-- Généré le: Dim 05 Janvier 2014 à 14:28
 -- Version du serveur: 5.6.12-log
 -- Version de PHP: 5.4.16
 
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `lien` (
   `titre` varchar(255) NOT NULL,
   `ID_site` int(11) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Contenu de la table `lien`
@@ -65,7 +65,8 @@ CREATE TABLE IF NOT EXISTS `lien` (
 
 INSERT INTO `lien` (`ID`, `url`, `titre`, `ID_site`) VALUES
 (1, 'https://hall.com/rooms/523d0feb9b7360a4359fd579', 'Hall', 1),
-(2, 'https://habitrpg.com/#/tasks', 'HabitRPG | Your Life The Role Playing Game', 2);
+(2, 'https://habitrpg.com/#/tasks', 'HabitRPG | Your Life The Role Playing Game', 2),
+(3, 'http://fr.openclassrooms.com/informatique/cours/concevez-votre-site-web-avec-php-et-mysql/les-fonctions-de-gestion-des-dates', ' Les fonctions de gestion des dates\n', 3);
 
 -- --------------------------------------------------------
 
@@ -88,7 +89,8 @@ INSERT INTO `lien_groupe` (`ID_lien`, `ID_groupe`, `vue`) VALUES
 (1, 1, 0),
 (2, 1, 1),
 (2, 2, 1),
-(2, 3, 0);
+(2, 3, 0),
+(3, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -102,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `site` (
   `favicone` varchar(255) NOT NULL,
   `couleur` varchar(7) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Contenu de la table `site`
@@ -110,7 +112,8 @@ CREATE TABLE IF NOT EXISTS `site` (
 
 INSERT INTO `site` (`ID`, `url`, `favicone`, `couleur`) VALUES
 (1, 'https://hall.com/', 'http://www.google.com/s2/favicons?domain=https://hall.com/', '#20b3e2'),
-(2, 'https://habitrpg.com/', 'http://www.google.com/s2/favicons?domain=https://habitrpg.com/', '#735b3e');
+(2, 'https://habitrpg.com/', 'http://www.google.com/s2/favicons?domain=https://habitrpg.com/', '#735b3e'),
+(3, 'http://fr.openclassrooms.com', 'http://www.google.com/s2/favicons?domain=http://fr.openclassrooms.com', '#ca866f');
 
 -- --------------------------------------------------------
 
@@ -173,7 +176,8 @@ CREATE TABLE IF NOT EXISTS `utilisateur_lien` (
 
 INSERT INTO `utilisateur_lien` (`ID_utilisateur`, `ID_lien`, `dateCrea`) VALUES
 (1, 1, '2014-01-04 04:30:32'),
-(1, 2, '2014-01-03 09:32:00');
+(1, 2, '2014-01-03 09:32:00'),
+(1, 3, '2014-01-05 15:19:15');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

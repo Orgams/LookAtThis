@@ -69,7 +69,7 @@
     $idLien = $donnee['ID'];
     
 
-    $req = $bdd->prepare('INSERT INTO utilisateur_lien (ID_utilisateur, ID_lien) VALUES (?, ?)');
+    $req = $bdd->prepare('INSERT INTO utilisateur_lien (ID_utilisateur, ID_lien, dateCrea) VALUES (?, ?, NOW())');
     $req->execute(array($_SESSION['ID'], $idLien));
     
     $req = $bdd->prepare('INSERT INTO lien_groupe (ID_lien, ID_groupe) VALUES (?, ?)');
