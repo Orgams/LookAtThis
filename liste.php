@@ -5,15 +5,16 @@
   <body>
     <?php 
       include("enTete.php");
-      if(count($_SESSION['groupe']) != 0){
-        $place_holders = implode(',', array_fill(0, count($_SESSION['groupe']), '?'));
+      $groupe = $_SESSION['groupe'];
+      if(count($groupe) != 0){
+        $place_holders = implode(',', array_fill(0, count($groupe), '?'));
         $req = $bdd->prepare("SELECT DISTINCT lien.ID, lien.url, site.url AS site, lien.titre, site.favicone, site.couleur
                               FROM lien_groupe LG
                               INNER JOIN lien ON LG.ID_lien = lien.ID
                               INNER JOIN site ON lien.ID_site = site.ID
                               WHERE LG.vue = false
                               AND LG.ID_groupe IN ($place_holders)");
-        $req->execute($_SESSION['groupe']);
+        $req->execute($groupe);
       }else{
         $req = $bdd->prepare("SELECT DISTINCT lien.ID, lien.url, site.url AS site, lien.titre, site.favicone, site.couleur
                             FROM lien
@@ -48,7 +49,12 @@
             <a href= <?php echo $site ?> target="_blank"> <?php echo $site; ?></a><?php
               while ($donnees2 = $req2->fetch())
               {
-                iconeGroupe($donnees2['couleur'], $donnees2['type'], $donnees2['nom'], $donnees2['ID']);
+                if(in_array ( $donnees2['ID'], $groupe)){
+                  $couleur = $donnees2['couleur'];
+                }else{
+                  $couleur = "rgba(0,0,0,0.5)";
+                }
+                iconeGroupe($couleur, $donnees2['type'], $donnees2['nom'], $donnees2['ID']);
               } 
             ?>
           </aside>
