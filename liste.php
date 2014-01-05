@@ -32,11 +32,12 @@
         $site =  $donnees['site'];
         $favicone = $donnees['favicone'];
         $couleurFond = "rgba(".convertColor($donnees['couleur']).",0.3";
+        $idLien = $donnees['ID'];
         $req2 = $bdd->prepare('SELECT groupe.couleur, groupe.typePersonne AS type, groupe.nom, groupe.ID
                                FROM lien_groupe LG
                                INNER JOIN groupe ON LG.ID_groupe = groupe.ID
                                WHERE ID_lien = ?');
-        $req2->execute(array($donnees['ID']));
+        $req2->execute(array($idLien));
         $image = "http://www.google.com/s2/favicons?domain=$site";
     ?>
         <section class=lien style="background:<?php echo $couleurFond ?>">
@@ -47,14 +48,11 @@
             <a href= <?php echo $site ?> target="_blank"> <?php echo $site; ?></a><?php
               while ($donnees2 = $req2->fetch())
               {
-                $couleur = $donnees2['couleur'];
-                $type = $donnees2['type'];
-                $nom = $donnees2['nom'];
                 iconeGroupe($donnees2['couleur'], $donnees2['type'], $donnees2['nom'], $donnees2['ID']);
               } 
             ?>
           </aside>
-          <div class=action><span class=logo title='Marquer comme vue'>M</span></div>
+          <a href="lienVue.php?idLien=<?php echo $idLien ?>"><div class=action><span class=logo title='Marquer comme vue'>M</span></div>
         </section>
       
     <?php
