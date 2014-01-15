@@ -53,7 +53,10 @@
               } 
             ?>
           </aside>
-          <a href="lienVue.php?idLien=<?php echo $idLien ?>"><div class=action><span class=logo title='Marquer comme vue'>M</span></div>
+          <div class=action>
+            <a href="lienVue.php?idLien=<?php echo $idLien ?>"><span class=logo title='Marquer comme vue'>M</span></a>
+            <a href="lienDel.php?idLien=<?php echo $idLien ?>"><span class=logo title='Supprimer'>[</span></a>
+          </div>
         </section>
       
     <?php

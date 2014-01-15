@@ -92,7 +92,7 @@ nav .logo{
   font-size: 3em;
 }
 section.informations{
-border-bottom: 1px solid rgba(0,0,0,.05);
+  border-bottom: 1px solid rgba(0,0,0,.05);
 }
 section.informations .logo{
   font-size: 2em;
@@ -113,7 +113,7 @@ form span.logo{
 }
 td input{
   float:right;
-    margin-left: 1em;
+  margin-left: 1em;
 }
 section.groupe .logo{
   font-size: 2em;
