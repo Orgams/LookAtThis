@@ -1,19 +1,42 @@
 <?php
-/*  include("topPage.php");
-  echo "debut";
+  include("topPage.php");
   if(isSet($_GET["idLien"])){
     $idLien = $_GET["idLien"];
-    echo $idLien;
-    $place_holders = implode(',', array_fill(0, count($_SESSION['groupe']), '?'));
-    $req = $bdd->prepare("UPDATE lien_groupe
-                          SET vue = 1
+    $id = $_SESSION["ID"];
+    
+    $parametre = array($id);
+    $req = $bdd->prepare("SELECT ID_groupe FROM utilisateur_groupe
+                          WHERE ID_utilisateur = ?");
+    $req->execute($parametre);
+    $i=0;
+    while ($donnees = $req->fetch()){
+      $allUser[$i++] = $donnees["ID_groupe"];
+    }
+    $place_holders = implode(',', array_fill(0, count($allUser), '?'));
+
+    $parametre = array_merge(array($idLien),$allUser);
+    $req = $bdd->prepare("DELETE FROM lien_groupe
                           WHERE ID_lien = ?
-                          AND ID_groupe in ($place_holders)");
-    $parametre = array_merge(array($idLien),$_SESSION['groupe']);
-    print_r($req);
-    print_r($parametre);
+                          AND $place_holders IN ($place_holders)");
     $req->execute($parametre);
 
+    $parametre = array($idLien);
+    $req = $bdd->prepare("DELETE FROM utilisateur_lien
+                          WHERE ID_lien = ?");
+    $req->execute($parametre);
+    
+    $req = $bdd->prepare("DELETE FROM lien_groupe
+                          WHERE ID_lien = ?");
+    $req->execute($parametre);
+    
+    $delLien = false;
+    if($donnees = $req->fetch()){
+      $delLien = true;
+    }
+    if($delLien){
+      
+    }
+    /*
     $req = $bdd->prepare('SELECT MAX(ID) AS ID FROM groupe WHERE nom = ? AND couleur = ? AND typePersonne = ?');
     $req->execute($param);
     $donnee = $req->fetch();
@@ -21,7 +44,7 @@
     
     $param = array($_SESSION["ID"], $idGroupe);
     $req = $bdd->prepare('INSERT INTO utilisateur_groupe VALUES (?, ?)');
-    $req->execute($param);
+    $req->execute($param);*/
   }
-  header("Location: liste.php");*/
+  //header("Location: liste.php");
 ?>
