@@ -21,6 +21,9 @@ function iconeGroupe($couleur, $type, $nom, $id) {
     <a href='modifGroupeSelect.php?action=ajouter&id=<?php echo $id ?>'>
     <?php
   }
+  if (!in_array($id, $_SESSION['groupe'])){
+    $couleur = "rgba(0,0,0,0.5)";
+  }
   ?>
   <span class=logo style=color:<?php echo $couleur ?> title=<?php echo $nom ?> >
   <?php

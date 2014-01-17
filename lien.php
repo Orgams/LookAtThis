@@ -10,7 +10,7 @@
         <span class=erreur>L'URL du lien ne peut être vide</span>
       <?php } ?>
       <?php if(isSet($_GET['errSiteNull'])){ ?>
-        <span class=erreur>L'URL doit corespondre à un site qui existe</span>
+        <span class=erreur>L'URL doit correspondre à un site qui existe</span>
       <?php } ?>
       <br/>
       <label for="url">URL</label>

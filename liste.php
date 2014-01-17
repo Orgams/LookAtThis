@@ -49,12 +49,7 @@
             <a href= <?php echo $site ?> target="_blank"> <?php echo $site; ?></a><?php
               while ($donnees2 = $req2->fetch())
               {
-                if(in_array ( $donnees2['ID'], $groupe)){
-                  $couleur = $donnees2['couleur'];
-                }else{
-                  $couleur = "rgba(0,0,0,0.5)";
-                }
-                iconeGroupe($couleur, $donnees2['type'], $donnees2['nom'], $donnees2['ID']);
+                iconeGroupe($donnees2['couleur'], $donnees2['type'], $donnees2['nom'], $donnees2['ID']);
               } 
             ?>
           </aside>

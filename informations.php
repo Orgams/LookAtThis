@@ -33,7 +33,7 @@
     }
     while ($donnees = $reqNotGroupe->fetch())
     {
-      iconeGroupe("rgba(0,0,0,0.5)", $donnees['type'], $donnees['nom'], $donnees['ID']);
+      iconeGroupe($donnees['couleur'], $donnees['type'], $donnees['nom'], $donnees['ID']);
     }
     $req->closeCursor();
   ?>
