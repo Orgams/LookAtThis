@@ -5,6 +5,10 @@
     if($url == ""){
       header("Location: lien.php?errUrlVide=1");
     }
+    if(!preg_match("#^http#", $url)){
+      $url = "http://".$url;
+    }
+    echo $url;
     if(!isSet($_POST["personne"])){
       $_POST["personne"] = array();
     }
@@ -36,13 +40,7 @@
 
         $url = urldecode($url);
         $url_decomposee = parse_url($url);
-        print_r($url_decomposee);
-        if(isSet($url_decomposee['scheme']) && $url_decomposee['scheme'] != ""){
-          $urlSite = $url_decomposee['scheme']."://".$url_decomposee['host'];
-        }else{
-          $urlSite = explode("/",$url)[0];
-        }
-        print_r($urlSite);
+        $urlSite = $url_decomposee['scheme']."://".$url_decomposee['host'];
         $req = $bdd->prepare('SELECT ID FROM site WHERE url=?');
         $req->execute(array($urlSite));
         $donnee = $req->fetch();  
@@ -84,5 +82,4 @@
     }
 
   }
-  //header("Location: lien.php");
 ?>
