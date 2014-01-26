@@ -36,8 +36,13 @@
 
         $url = urldecode($url);
         $url_decomposee = parse_url($url);
-        $urlSite = $url_decomposee['scheme']."://".$url_decomposee['host'];
-        
+        print_r($url_decomposee);
+        if(isSet($url_decomposee['scheme']) && $url_decomposee['scheme'] != ""){
+          $urlSite = $url_decomposee['scheme']."://".$url_decomposee['host'];
+        }else{
+          $urlSite = explode("/",$url)[0];
+        }
+        print_r($urlSite);
         $req = $bdd->prepare('SELECT ID FROM site WHERE url=?');
         $req->execute(array($urlSite));
         $donnee = $req->fetch();  
@@ -79,5 +84,5 @@
     }
 
   }
-  header("Location: lien.php");
+  //header("Location: lien.php");
 ?>
