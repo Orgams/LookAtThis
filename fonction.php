@@ -144,4 +144,11 @@ function convertColor($color){
   }
 
 }
+function afficherReq($requete, $parametre){
+  print_r($requete);
+  echo "<br/>";
+  print_r($parametre);
+  echo "<br/>";
+
+}
 ?>
