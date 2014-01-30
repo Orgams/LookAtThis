@@ -20,7 +20,8 @@
                             FROM lien
                             INNER JOIN utilisateur_lien AS UL ON lien.ID = UL.ID_lien
                             INNER JOIN site ON lien.ID_site = site.ID
-                            WHERE UL.ID_utilisateur = ?");
+                            WHERE UL.ID_utilisateur = ?
+                            ORDER BY dateCrea DESC");
         $req->execute(array($_SESSION['ID']));
       }
       while ($donnees = $req->fetch())

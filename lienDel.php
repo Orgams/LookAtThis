@@ -22,10 +22,6 @@
     $req = $bdd->prepare("DELETE FROM lien_groupe
                           WHERE ID_lien = ?
                           AND ID_groupe IN ($place_holders)");
-    print_r($req);
-    echo "<br/>";
-    print_r($parametre);
-    echo "<br/>";
     $req->execute($parametre);
 
     //supprimer le lien pour l'utilisateur
@@ -42,12 +38,8 @@
     if($donnees[0] != 0){
           $req = $bdd->prepare("DELETE FROM lien
                                 WHERE ID = ?");
-          print_r($req);
-          echo "<br/>";
-          print_r($parametre);
-          echo "<br/>";
           $req->execute($parametre);
     }
   }
-  //header("Location: liste.php");
+  header("Location: liste.php");
 ?>
