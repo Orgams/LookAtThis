@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Dim 05 Janvier 2014 à 14:28
+-- Généré le: Ven 31 Janvier 2014 à 20:45
 -- Version du serveur: 5.6.12-log
 -- Version de PHP: 5.4.16
 
@@ -34,16 +34,18 @@ CREATE TABLE IF NOT EXISTS `groupe` (
   `couleur` varchar(7) NOT NULL,
   `typePersonne` tinyint(1) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+
+-- --------------------------------------------------------
 
 --
--- Contenu de la table `groupe`
+-- Structure de la table `groupe_groupe`
 --
 
-INSERT INTO `groupe` (`ID`, `nom`, `couleur`, `typePersonne`) VALUES
-(1, '&Eacute;milie', '#BA55DD', 1),
-(2, 'No&eacute;mie', '#1E90FF', 1),
-(3, 'colocation', '#FF0000', 0);
+CREATE TABLE IF NOT EXISTS `groupe_groupe` (
+  `groupePere` int(11) NOT NULL,
+  `groupeFils` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -57,16 +59,7 @@ CREATE TABLE IF NOT EXISTS `lien` (
   `titre` varchar(255) NOT NULL,
   `ID_site` int(11) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
-
---
--- Contenu de la table `lien`
---
-
-INSERT INTO `lien` (`ID`, `url`, `titre`, `ID_site`) VALUES
-(1, 'https://hall.com/rooms/523d0feb9b7360a4359fd579', 'Hall', 1),
-(2, 'https://habitrpg.com/#/tasks', 'HabitRPG | Your Life The Role Playing Game', 2),
-(3, 'http://fr.openclassrooms.com/informatique/cours/concevez-votre-site-web-avec-php-et-mysql/les-fonctions-de-gestion-des-dates', ' Les fonctions de gestion des dates\n', 3);
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=75 ;
 
 -- --------------------------------------------------------
 
@@ -81,17 +74,6 @@ CREATE TABLE IF NOT EXISTS `lien_groupe` (
   PRIMARY KEY (`ID_lien`,`ID_groupe`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Contenu de la table `lien_groupe`
---
-
-INSERT INTO `lien_groupe` (`ID_lien`, `ID_groupe`, `vue`) VALUES
-(1, 1, 0),
-(2, 1, 1),
-(2, 2, 1),
-(2, 3, 0),
-(3, 2, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -104,16 +86,7 @@ CREATE TABLE IF NOT EXISTS `site` (
   `favicone` varchar(255) NOT NULL,
   `couleur` varchar(7) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
-
---
--- Contenu de la table `site`
---
-
-INSERT INTO `site` (`ID`, `url`, `favicone`, `couleur`) VALUES
-(1, 'https://hall.com/', 'http://www.google.com/s2/favicons?domain=https://hall.com/', '#20b3e2'),
-(2, 'https://habitrpg.com/', 'http://www.google.com/s2/favicons?domain=https://habitrpg.com/', '#735b3e'),
-(3, 'http://fr.openclassrooms.com', 'http://www.google.com/s2/favicons?domain=http://fr.openclassrooms.com', '#ca866f');
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
 
 -- --------------------------------------------------------
 
@@ -129,13 +102,6 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
---
--- Contenu de la table `utilisateur`
---
-
-INSERT INTO `utilisateur` (`ID`, `mail`, `pseudonyme`, `Pass`) VALUES
-(1, 'orgams.7@gmail.com', 'Orgams', '026541');
-
 -- --------------------------------------------------------
 
 --
@@ -147,15 +113,6 @@ CREATE TABLE IF NOT EXISTS `utilisateur_groupe` (
   `ID_groupe` int(11) NOT NULL,
   PRIMARY KEY (`ID_utilisateur`,`ID_groupe`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Contenu de la table `utilisateur_groupe`
---
-
-INSERT INTO `utilisateur_groupe` (`ID_utilisateur`, `ID_groupe`) VALUES
-(1, 1),
-(1, 2),
-(1, 3);
 
 -- --------------------------------------------------------
 
@@ -169,15 +126,6 @@ CREATE TABLE IF NOT EXISTS `utilisateur_lien` (
   `dateCrea` datetime NOT NULL,
   PRIMARY KEY (`ID_utilisateur`,`ID_lien`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Contenu de la table `utilisateur_lien`
---
-
-INSERT INTO `utilisateur_lien` (`ID_utilisateur`, `ID_lien`, `dateCrea`) VALUES
-(1, 1, '2014-01-04 04:30:32'),
-(1, 2, '2014-01-03 09:32:00'),
-(1, 3, '2014-01-05 15:19:15');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
