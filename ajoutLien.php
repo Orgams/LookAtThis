@@ -80,6 +80,6 @@
     foreach ($groupes as $groupe) {
       $req->execute(array($idLien, $groupe));
     }
-
   }
+  header("Location: lien.php");
 ?>
