@@ -13,6 +13,9 @@
           <?php if(isSet($_GET['errNomVide'])){ ?>
             <td class=erreur>Le nom du groupe ne peut être vide</td>
           <?php } ?>
+          <?php if(isSet($_GET['errNomExiste'])){ ?>
+            <td class=erreur>Le groupe ne doit pas déjà exister</td>
+          <?php } ?>
         </tr>
         <tr>
           <td><label for="couleur">Couleur du groupe</label></td>
