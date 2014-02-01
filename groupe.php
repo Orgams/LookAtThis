@@ -5,7 +5,11 @@
     <?php 
       include("enTete.php");
     ?>
+
     <form method="post" name="formulaire" action="ajoutGroupe.php">
+      <?php if(isSet($_GET['ok'])){ ?>
+        <span class=success>Le groupe <?php echo $_GET['ok']?> a été ajouté</span>
+      <?php } ?>
       <table class=form>
         <tr>
           <td><label for="nom">Nom du groupe</label></td>

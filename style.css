@@ -36,6 +36,10 @@
   color: red;
   font-weight:bold;
 }
+.success{
+  color: green;
+  font-weight:bold;
+}
 .logo{
   font-family: 'entyporegular';
   display: inline-block;
