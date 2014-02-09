@@ -6,7 +6,9 @@
       header("Location: lien.php?errUrlVide=1");
     }
     if(!preg_match("#^http#", $url)){
-      $url = "http://".$url;
+      if(!preg_match("#^www\.#", $url)){
+        $url = "www.".$url;  $url = "http://".$url;
+      }
     }
     echo $url;
     if(!isSet($_POST["personne"])){
