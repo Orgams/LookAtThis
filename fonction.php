@@ -1,13 +1,12 @@
 <?php
-function modifGroupeSelect($action, $id){
-  modifTableauSession('groupe', $action, $id);
-}
-function modifTableauSession($tableau, $action, $id){
-  if($action == 'ajouter' && !in_array($id, $_SESSION['groupe']) ){
-    array_push($_SESSION[$tableau],$id);
+
+
+function modifTableauSession($action, $valeur, $nomTableau){
+  if($action == 'ajouter' && !in_array($valeur, $_SESSION[$nomTableau]) ){
+    array_push($_SESSION[$nomTableau],$valeur);
   }
-  if($action == 'retirer' && in_array($id, $_SESSION['groupe']) ){
-    $_SESSION['groupe'] = array_remove($_SESSION['groupe'],$id);
+  if($action == 'retirer' && in_array($valeur, $_SESSION[$nomTableau]) ){
+    $_SESSION[$nomTableau] = array_remove($_SESSION[$nomTableau],$valeur);
   }
 }
 
@@ -15,16 +14,17 @@ function array_remove($array, $item){
   array_splice($array,array_search($item, $array),1);
   return $array;
 }
-function iconeGroupe($couleur, $type, $nom, $id) {
-  if (in_array($id, $_SESSION['groupe'])){?>
-    <a href='modifGroupeSelect.php?action=retirer&id=<?php echo $id ?>'>
+
+function iconeGroupe($couleur, $type, $nom, $valeur) {
+  if (in_array($valeur, $_SESSION['groupeSelectionne'])){?>
+    <a href='modifGroupeSelect.php?action=retirer&id=<?php echo $valeur ?>'>
   <?php
   }else{
   ?>
-    <a href='modifGroupeSelect.php?action=ajouter&id=<?php echo $id ?>'>
+    <a href='modifGroupeSelect.php?action=ajouter&id=<?php echo $valeur ?>'>
     <?php
   }
-  if (!in_array($id, $_SESSION['groupe'])){
+  if (!in_array($valeur, $_SESSION['groupeSelectionne'])){
     $couleur = "rgba(0,0,0,0.5)";
   }
   ?>
@@ -47,34 +47,33 @@ function bloqueGroupeSelection($couleur, $type, $nom, $idGroupe) {
 function bloqueGroupeAjoutLien($couleur, $type, $nom, $idGroupe) {
   bloqueGroupe(false, $couleur, $type, $nom, $idGroupe, 'modifGroupeSelect.php', 'selectionGroupe.php');
 }
-function bloqueGroupe($isLigne, $couleur, $type, $nom, $idGroupe, $pageTraitement, $pageRetour) {
-if($isLigne){ ?>
-  <div class=largeurEcran>
-<?php }else{?>
-  <span class=groupe>
-<?php }?>
-    <a href='<?php echo $pageTraitement ?>?retour=<?php echo $pageRetour ?>&action=retirer&id=<?php echo $idGroupe ?>' style=color:<?php echo $couleur ?>>
-  <?php
-    if (in_array($idGroupe, $_SESSION['groupe'])){
-  ?>
-    <span class=logo>\</span> 
-  <?php
-    }else{
-  ?>
-    <span class=logo>]</span> 
-  <?php
-    }
-  ?>
-  <?php echo $nom?>
+?>
+<?php
+function bloqueGroupe($couleur, $type, $nom, $valeurGroupe) {
+?>
+<section class=groupe style="background:<?php echo ChangerTonCouleur($couleur,150); ?>">
+  <article style=color:<?php echo $couleur ?>>
+    <?php
+      if (in_array($valeurGroupe, $_SESSION['groupeSelectionne'])){
+    ?>
+    <a href='modifGroupeSelect.php?action=retirer&id=<?php echo $valeurGroupe ?>'><span class=logo>\</span> 
+    <?php
+      }else{
+    ?>
+    <a href='modifGroupeSelect.php?action=ajouter&id=<?php echo $valeurGroupe ?>'><span class=logo>]</span> 
+    <?php
+      }
+    ?>
     </a>
-<?php if($isLigne){ ?>
-  </div>
-<?php }else{?>
-  </span>
+    <?php echo $nom.' '.iconeGroupe($couleur, $type, $nom, $valeurGroupe)?>
+  </article>
+</section>
+
 <?php
 	}
 }
 
+//trouve la couleur "moyenne"
 function principal_color($image) {
   $ImageChoisie = imagecreatefrompng($image);
   $TailleImageChoisie = getimagesize($image);
@@ -115,7 +114,6 @@ function principal_color($image) {
   $couleur=$rouge.','.$vert.','.$bleu;
   return $couleur;
 }
-
 
 function ChangerTonCouleur($couleur,$changementTon){
   $couleur=substr($couleur,1,6);
@@ -158,6 +156,7 @@ function convertColor($color){
   }
 
 }
+
 function afficherReq($requete, $parametre){
   print_r($requete);
   echo "<br/>";
