@@ -17,11 +17,11 @@ function array_remove($array, $item){
 
 function iconeGroupe($couleur, $type, $nom, $valeur) {
   if (in_array($valeur, $_SESSION['groupeSelectionne'])){?>
-    <a href='modifGroupeSelect.php?action=retirer&id=<?php echo $valeur ?>'>
+    <a href='modifTableauSession.php?action=retirer&id=<?php echo $valeur ?>'>
   <?php
   }else{
   ?>
-    <a href='modifGroupeSelect.php?action=ajouter&id=<?php echo $valeur ?>'>
+    <a href='modifTableauSession.php?action=ajouter&id=<?php echo $valeur ?>'>
     <?php
   }
   if (!in_array($valeur, $_SESSION['groupeSelectionne'])){
@@ -42,10 +42,10 @@ function iconeGroupe($couleur, $type, $nom, $valeur) {
 }
 
 function bloqueGroupeSelection($couleur, $type, $nom, $idGroupe) {
-  bloqueGroupe($couleur, $type, $nom, $idGroupe, 'modifGroupeSelect.php');
+  bloqueGroupe($couleur, $type, $nom, $idGroupe, 'modifTableauSession.php');
 }
 function bloqueGroupeAjoutLien($couleur, $type, $nom, $idGroupe) {
-  bloqueGroupe($couleur, $type, $nom, $idGroupe, 'modifGroupeSelect.php');
+  bloqueGroupe($couleur, $type, $nom, $idGroupe, 'modifTableauSession.php');
 }
 ?>
 <?php
@@ -56,11 +56,11 @@ function bloqueGroupe($couleur, $type, $nom, $valeurGroupe) {
     <?php
       if (in_array($valeurGroupe, $_SESSION['groupeSelectionne'])){
     ?>
-    <a href='modifGroupeSelect.php?action=retirer&id=<?php echo $valeurGroupe ?>'><span class=logo>\</span> 
+    <a href='modifTableauSession.php?action=retirer&id=<?php echo $valeurGroupe ?>'><span class=logo>\</span> 
     <?php
       }else{
     ?>
-    <a href='modifGroupeSelect.php?action=ajouter&id=<?php echo $valeurGroupe ?>'><span class=logo>]</span> 
+    <a href='modifTableauSession.php?action=ajouter&id=<?php echo $valeurGroupe ?>'><span class=logo>]</span> 
     <?php
       }
     ?>

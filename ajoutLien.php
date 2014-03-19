@@ -40,7 +40,7 @@
         ?>
       </select>
       <br/>
-      <a href="#" onClick=formulaire.submit()><span class=logo>W</span></a></td>
+      <a href="#" onClick=formulaire.submit()><span class="logo valider">W</span></a></td>
     </form>
     <?php include("footer.php"); ?>
   </body>

@@ -44,6 +44,7 @@
   font-family: 'entyporegular';
   display: inline-block;
   position: relative;
+  font-size: 2em;
   top: 5px;
 }
 h2.phraseSite{
@@ -103,9 +104,6 @@ nav{
 }
 section.informations{
   border-bottom: 1px solid rgba(0,0,0,.05);
-  font-size: 2em;
-}
-.logo{
   font-size: 2em;
 }
 section.lien, form{
