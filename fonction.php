@@ -42,10 +42,10 @@ function iconeGroupe($couleur, $type, $nom, $valeur) {
 }
 
 function bloqueGroupeSelection($couleur, $type, $nom, $idGroupe) {
-  bloqueGroupe(false, $couleur, $type, $nom, $idGroupe, 'modifGroupeSelect.php', 'selectionGroupe.php');
+  bloqueGroupe($couleur, $type, $nom, $idGroupe, 'modifGroupeSelect.php');
 }
 function bloqueGroupeAjoutLien($couleur, $type, $nom, $idGroupe) {
-  bloqueGroupe(false, $couleur, $type, $nom, $idGroupe, 'modifGroupeSelect.php', 'selectionGroupe.php');
+  bloqueGroupe($couleur, $type, $nom, $idGroupe, 'modifGroupeSelect.php');
 }
 ?>
 <?php
