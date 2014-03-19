@@ -12,6 +12,7 @@ function array_remove($array, $item){
   array_splice($array,array_search($item, $array),1);
   return $array;
 }
+
 function iconeGroupe($couleur, $type, $nom, $id) {
   if (in_array($id, $_SESSION['groupe'])){?>
     <a href='modifGroupeSelect.php?action=retirer&id=<?php echo $id ?>'>
@@ -37,6 +38,7 @@ function iconeGroupe($couleur, $type, $nom, $id) {
   </span></a>
 <?php
 }
+
 ?>
 <?php
 function bloqueGroupe($couleur, $type, $nom, $idGroupe) {
@@ -102,7 +104,6 @@ function principal_color($image) {
   return $couleur;
 }
 
-
 function ChangerTonCouleur($couleur,$changementTon){
   $couleur=substr($couleur,1,6);
   $cl=explode('x',wordwrap($couleur,2,'x',3));
@@ -144,6 +145,7 @@ function convertColor($color){
   }
 
 }
+
 function afficherReq($requete, $parametre){
   print_r($requete);
   echo "<br/>";
