@@ -1,11 +1,11 @@
 <?php
 
-function modifGroupeSelect($action, $id){
-  if($action == 'ajouter' && !in_array($id, $_SESSION['groupe']) ){
-    array_push($_SESSION['groupe'],$id);
+function modifTableauSession($action, $valeur, $nomTableau){
+  if($action == 'ajouter' && !in_array($valeur, $_SESSION[$nomTableau]) ){
+    array_push($_SESSION['groupeSelectionne'],$valeur);
   }
-  if($action == 'retirer' && in_array($id, $_SESSION['groupe']) ){
-    $_SESSION['groupe'] = array_remove($_SESSION['groupe'],$id);
+  if($action == 'retirer' && in_array($valeur, $_SESSION[$nomTableau]) ){
+    $_SESSION[$nomTableau] = array_remove($_SESSION[$nomTableau],$valeur);
   }
 }
 
@@ -14,16 +14,16 @@ function array_remove($array, $item){
   return $array;
 }
 
-function iconeGroupe($couleur, $type, $nom, $id) {
-  if (in_array($id, $_SESSION['groupe'])){?>
-    <a href='modifGroupeSelect.php?action=retirer&id=<?php echo $id ?>'>
+function iconeGroupe($couleur, $type, $nom, $valeur) {
+  if (in_array($valeur, $_SESSION['groupeSelectionne'])){?>
+    <a href='modifGroupeSelect.php?action=retirer&id=<?php echo $valeur ?>'>
   <?php
   }else{
   ?>
-    <a href='modifGroupeSelect.php?action=ajouter&id=<?php echo $id ?>'>
+    <a href='modifGroupeSelect.php?action=ajouter&id=<?php echo $valeur ?>'>
     <?php
   }
-  if (!in_array($id, $_SESSION['groupe'])){
+  if (!in_array($valeur, $_SESSION['groupeSelectionne'])){
     $couleur = "rgba(0,0,0,0.5)";
   }
   ?>
@@ -42,23 +42,23 @@ function iconeGroupe($couleur, $type, $nom, $id) {
 
 ?>
 <?php
-function bloqueGroupe($couleur, $type, $nom, $idGroupe) {
+function bloqueGroupe($couleur, $type, $nom, $valeurGroupe) {
 ?>
 <section class=groupe style="background:<?php echo ChangerTonCouleur($couleur,150); ?>">
   <article style=color:<?php echo $couleur ?>>
     <?php
-      if (in_array($idGroupe, $_SESSION['groupe'])){
+      if (in_array($valeurGroupe, $_SESSION['groupeSelectionne'])){
     ?>
-    <a href='modifGroupeSelect.php?retour=selectionGroupe.php&action=retirer&id=<?php echo $idGroupe ?>'><span class=logo>\</span> 
+    <a href='modifGroupeSelect.php?action=retirer&id=<?php echo $valeurGroupe ?>'><span class=logo>\</span> 
     <?php
       }else{
     ?>
-    <a href='modifGroupeSelect.php?retour=selectionGroupe.php&action=ajouter&id=<?php echo $idGroupe ?>'><span class=logo>]</span> 
+    <a href='modifGroupeSelect.php?action=ajouter&id=<?php echo $valeurGroupe ?>'><span class=logo>]</span> 
     <?php
       }
     ?>
     </a>
-    <?php echo $nom.' '.iconeGroupe($couleur, $type, $nom, $idGroupe)?>
+    <?php echo $nom.' '.iconeGroupe($couleur, $type, $nom, $valeurGroupe)?>
   </article>
 </section>
 <?php

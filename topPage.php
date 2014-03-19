@@ -3,10 +3,10 @@ session_start();
 include('fonction.php');
 $_SESSION['mail'] = 'orgams.7@gmail.com';
 $_SESSION['ID'] = '1';
-if(!isSet($_SESSION['groupe'])){
-  $_SESSION['groupe'] = array();
+if(!isSet($_SESSION['groupeSelectionne'])){
+  $_SESSION['groupeSelectionne'] = array();
 }
-//$_SESSION['groupe'] = array();
+//$_SESSION['groupeSelectionne'] = array();
 try{
 	$bdd = new PDO('mysql:host=localhost;dbname=lookatthis', 'root', '');
 }catch (Exception $e)
@@ -19,5 +19,12 @@ $donnees = $req->fetch();
 $pseudonyme = $donnees['pseudonyme'];
 $req->closeCursor();
 
+print_r($_SESSION);
+echo "<br/>";
+foreach ($_SESSION as $key => $value) {
+	echo $key." = ";
+	print_r($value);
+	echo "<br/>";
+}
 ?>
 <!DOCTYPE html>

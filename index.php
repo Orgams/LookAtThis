@@ -5,7 +5,7 @@
   <body>
     <?php 
       include("enTete.php");
-      $groupe = $_SESSION['groupe'];
+      $groupe = $_SESSION['groupeSelectionne'];
       if(count($groupe) != 0){
         $place_holders = implode(',', array_fill(0, count($groupe), '?'));
         $req = $bdd->prepare("SELECT DISTINCT lien.ID, lien.url, site.url AS site, lien.titre, site.favicone, site.couleur

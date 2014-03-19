@@ -1,18 +1,18 @@
 <?php 
-  $groupeExiste = count($_SESSION['groupe']) != 0;
+  $groupeExiste = count($_SESSION['groupeSelectionne']) != 0;
   
   $base = "SELECT couleur, typePersonne AS type, nom, ID
            FROM groupe ";
   if($groupeExiste){
-    $place_holders = implode(',', array_fill(0, count($_SESSION['groupe']), '?'));
+    $place_holders = implode(',', array_fill(0, count($_SESSION['groupeSelectionne']), '?'));
     
     $sqlGroupe = $base."WHERE ID IN ($place_holders)";
     $reqGroupe = $bdd->prepare($sqlGroupe);
-    $reqGroupe->execute($_SESSION['groupe']);
+    $reqGroupe->execute($_SESSION['groupeSelectionne']);
     
     $sqlNotGroupe = $base."WHERE ID NOT IN ($place_holders)";
     $reqNotGroupe = $bdd->prepare($sqlNotGroupe);
-    $reqNotGroupe->execute($_SESSION['groupe']);
+    $reqNotGroupe->execute($_SESSION['groupeSelectionne']);
   }else{
     $reqNotGroupe = $bdd->prepare("SELECT couleur, typePersonne AS type, nom, ID
                           FROM groupe

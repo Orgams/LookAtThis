@@ -41,5 +41,5 @@
           $req->execute($parametre);
     }
   }
-  header("Location: liste.php");
+  header("Location: index.php");
 ?>
