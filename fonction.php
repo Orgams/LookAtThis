@@ -70,7 +70,6 @@ function bloqueGroupe($couleur, $type, $nom, $valeurGroupe) {
 </section>
 
 <?php
-	}
 }
 
 //trouve la couleur "moyenne"
