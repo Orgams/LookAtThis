@@ -1,7 +1,10 @@
 <?php
 function modifGroupeSelect($action, $id){
+  modifTableauSession('groupe', $action, $id);
+}
+function modifTableauSession($tableau, $action, $id){
   if($action == 'ajouter' && !in_array($id, $_SESSION['groupe']) ){
-    array_push($_SESSION['groupe'],$id);
+    array_push($_SESSION[$tableau],$id);
   }
   if($action == 'retirer' && in_array($id, $_SESSION['groupe']) ){
     $_SESSION['groupe'] = array_remove($_SESSION['groupe'],$id);
@@ -37,28 +40,39 @@ function iconeGroupe($couleur, $type, $nom, $id) {
   </span></a>
 <?php
 }
-?>
-<?php
-function bloqueGroupe($couleur, $type, $nom, $idGroupe) {
-?>
-<section class=groupe style="background:<?php echo ChangerTonCouleur($couleur,150); ?>">
-  <article style=color:<?php echo $couleur ?>>
-    <?php
-      if (in_array($idGroupe, $_SESSION['groupe'])){
-    ?>
-    <a href='modifGroupeSelect.php?retour=selectionGroupe.php&action=retirer&id=<?php echo $idGroupe ?>'><span class=logo>\</span> 
-    <?php
-      }else{
-    ?>
-    <a href='modifGroupeSelect.php?retour=selectionGroupe.php&action=ajouter&id=<?php echo $idGroupe ?>'><span class=logo>]</span> 
-    <?php
-      }
-    ?>
+
+function bloqueGroupeSelection($couleur, $type, $nom, $idGroupe) {
+  bloqueGroupe(false, $couleur, $type, $nom, $idGroupe, 'modifGroupeSelect.php', 'selectionGroupe.php');
+}
+function bloqueGroupeAjoutLien($couleur, $type, $nom, $idGroupe) {
+  bloqueGroupe(false, $couleur, $type, $nom, $idGroupe, 'modifGroupeSelect.php', 'selectionGroupe.php');
+}
+function bloqueGroupe($isLigne, $couleur, $type, $nom, $idGroupe, $pageTraitement, $pageRetour) {
+if($isLigne){ ?>
+  <div class=largeurEcran>
+<?php }else{?>
+  <span class=groupe>
+<?php }?>
+    <a href='<?php echo $pageTraitement ?>?retour=<?php echo $pageRetour ?>&action=retirer&id=<?php echo $idGroupe ?>' style=color:<?php echo $couleur ?>>
+  <?php
+    if (in_array($idGroupe, $_SESSION['groupe'])){
+  ?>
+    <span class=logo>\</span> 
+  <?php
+    }else{
+  ?>
+    <span class=logo>]</span> 
+  <?php
+    }
+  ?>
+  <?php echo $nom?>
     </a>
-    <?php echo $nom.' '.iconeGroupe($couleur, $type, $nom, $idGroupe)?>
-  </article>
-</section>
+<?php if($isLigne){ ?>
+  </div>
+<?php }else{?>
+  </span>
 <?php
+	}
 }
 
 function principal_color($image) {

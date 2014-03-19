@@ -16,31 +16,27 @@
       <label for="url">URL</label>
       <input type="text" name="url" id="url"/><br/>
       <?php
-        $req = $bdd->prepare('SELECT nom, ID 
+        $req = $bdd->prepare('SELECT nom, ID, typePersonne AS type, couleur
                               FROM utilisateur_groupe AS UG
                               INNER JOIN groupe ON UG.ID_groupe = groupe.ID
-                              WHERE groupe.typePersonne =?');
-        $req->execute(array(1));
-      ?>
-      <select name="personne[]" multiple="multiple">
-        <?php
-          while($donnee = $req->fetch()){
-            echo "<option value='".$donnee['ID']."'>".$donnee['nom']."</option>";
-          }
-        ?>
-      </select>
-      <?php
-        $req->execute(array(0));
-      ?>
-      <select name="groupe[]" multiple="multiple">
-        <?php
-          while($donnee = $req->fetch()){
-            echo "<option value='".$donnee['ID']."'>".$donnee['nom']."</option>";
-          }
+                              WHERE UG.ID_utilisateur = ?
+                              AND groupe.typePersonne = ?');
+                              
+        $req->execute(array_merge(array($_SESSION['ID']) ,array(0)));
+        echo "<div class=fondGris>";
+        while($donnee = $req->fetch()){
+          echo bloqueGroupeAjoutLien($donnee['couleur'], $donnee['type'], $donnee['nom'], $donnee['ID']);
+        }
+        echo "</div><div class=fondGris>";
+        $req->execute(array_merge(array($_SESSION['ID']) ,array(1)));
+        while($donnee = $req->fetch()){
+          echo bloqueGroupeAjoutLien($donnee['couleur'], $donnee['type'], $donnee['nom'], $donnee['ID']);
+        }
+        echo "</div>";
         ?>
       </select>
       <br/>
-      <a href="#" onClick=formulaire.submit()><span class=logo>W</span></a></td>
+      <a href="#" onClick=formulaire.submit()><span class="logo valider">W</span></a></td>
     </form>
     <?php include("footer.php"); ?>
   </body>

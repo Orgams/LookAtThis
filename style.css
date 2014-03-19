@@ -44,6 +44,7 @@
 }
 h2.phraseSite{
   font-family: 'jinkyregular', Arial, serif;
+  font-size: 0.5em;
 }
 header
 {
@@ -59,12 +60,17 @@ header a
 }
 header a:active
 {
-  color: #888888; 
+  color: #888888;
+}
+.fondGris{
+  background-color:#e8e8e8;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
 header h1{
   display: inline-block;
   font-family: 'fontleroybrownregular', Arial, serif;
-  font-size: 4em;
+  font-size: 1em;
   margin: 0em;
 }
 
@@ -73,7 +79,7 @@ header h2
   display: inline-block;
   margin: 0em;
 }
-header .logo{
+header{
   font-size: 6em;
 }
 nav ul{
@@ -88,16 +94,17 @@ nav{
   right: 0.1em;
   display: inline-block;
 }
-nav .logo{
-  font-size: 3em;
+nav{
+  font-size: 1.5em;
 }
 section.informations{
   border-bottom: 1px solid rgba(0,0,0,.05);
-}
-section.informations .logo{
   font-size: 2em;
 }
-section.lien, section.groupe, form{
+.logo{
+  font-size: 2em;
+}
+section.lien, form{
   border-bottom: 1px solid rgba(0,0,0,.05);
   padding: 0.7em;
   margin: 0.3em;
@@ -107,7 +114,7 @@ section.lien, section.groupe, form{
 form{
   width: 100%;
 }
-form span.logo{
+.valider{
   color: green;
   font-size: 4em;
 }
@@ -115,14 +122,18 @@ td input{
   float:right;
   margin-left: 1em;
 }
-section.groupe .logo{
+.groupe{
   font-size: 2em;
+  margin: 0.3em;
 }
-div.action{
+.largeurEcran{
+	width: 100%
+}
+.action{
   position: absolute;
   right: 0.1em;
   bottom: 0.2em;
-  font-size: 3em;
+  font-size: 2em;
 }
 aside{
   font-size: 0.75em;
@@ -142,6 +153,6 @@ footer h1{
   font-family: 'fontleroybrownregular', Arial, serif;
   font-size: 2em;
 }
-footer .logo{
+footer{
   font-size: 2em;
 }
