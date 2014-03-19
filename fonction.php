@@ -1,4 +1,5 @@
 <?php
+
 function modifGroupeSelect($action, $id){
   if($action == 'ajouter' && !in_array($id, $_SESSION['groupe']) ){
     array_push($_SESSION['groupe'],$id);
@@ -63,6 +64,7 @@ function bloqueGroupe($couleur, $type, $nom, $idGroupe) {
 <?php
 }
 
+//trouve la couleur "moyenne"
 function principal_color($image) {
   $ImageChoisie = imagecreatefrompng($image);
   $TailleImageChoisie = getimagesize($image);
