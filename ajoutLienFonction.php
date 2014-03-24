@@ -7,7 +7,7 @@
     }
     if(!preg_match("#^http#", $url)){
       if(!preg_match("#^www\.#", $url)){
-        $url = "www.".$url;  $url = "http://".$url;
+        $url = "http://www.".$url;  
       }
     }
     echo $url;

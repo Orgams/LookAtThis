@@ -2,9 +2,7 @@
 <html>
   <?php include("head.php"); ?>
   <body>
-    <?php 
-      include("enTete.php");
-    ?>
+    <?php include("enTete.php"); ?>
 
     <form method="post" name="formulaire" action="ajoutGroupeFonction.php">
       <?php if(isSet($_GET['ok'])){ ?>
@@ -30,8 +28,8 @@
           <td><input type="checkbox" name="type" id="type" /></td>
         </tr>
         <tr>
-          <td colspan="2" align="center"><a href="#" onClick=formulaire.submit()><span class=logo>W</span></a></td>
-         </tr>
+          <td colspan="2" align="center"><a href="#" onClick=formulaire.submit()><span class="logo valider">W</span></a></td>
+        </tr>
       </table>
     </form>
     <?php include("footer.php"); ?>
