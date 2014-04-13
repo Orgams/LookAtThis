@@ -7,10 +7,11 @@
     }
     if(!preg_match("#^http#", $url)){
       if(!preg_match("#^www\.#", $url)){
-        $url = "http://www.".$url;  
+        $url = "http://www.".$url;
+      }else{
+        $url = "http://".$url;
       }
     }
-    echo $url;
     if(!isSet($_POST["personne"])){
       $_POST["personne"] = array();
     }
@@ -38,11 +39,23 @@
       if(@$page->loadHTML('<?xml encoding="UTF-8">' . $resultat)){
         $balise = $page->getElementsByTagName('title');
         $titre = $balise->item(0)->nodeValue;
+        print_r($titre);
+        echo "<br/>";
         $titre = htmlentities($titre, ENT_QUOTES, mb_detect_encoding($titre)); 
+        print_r($titre);
+        echo "<br/>";
 
+        print_r($url);
+        echo "<br/>";
         $url = urldecode($url);
         $url_decomposee = parse_url($url);
         $urlSite = $url_decomposee['scheme']."://".$url_decomposee['host'];
+        print_r($url);
+        echo "<br/>";
+        print_r($url_decomposee);
+        echo "<br/>";
+        print_r($urlSite);
+        echo "<br/>";
         $req = $bdd->prepare('SELECT ID FROM site WHERE url=?');
         $req->execute(array($urlSite));
         $donnee = $req->fetch();  
@@ -83,5 +96,5 @@
       $req->execute(array($idLien, $groupe));
     }
   }
-  header("Location: ajoutLien.php?ok=$titre");
+  //header("Location: ajoutLien.php?ok=$titre");
 ?>
