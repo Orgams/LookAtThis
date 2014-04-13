@@ -6,7 +6,7 @@
 
     <form method="post" name="formulaire" action="lierGroupeFonction.php">
       <?php if(isSet($_GET['ok'])){ ?>
-        <span class=success>Les groupes ont bien été lier au groupe <?php echo $_GET['ok']?></span>
+        <span class=success>Les groupes ont bien été liés à <?php $_GET['ok'] ?></span>
       <?php } ?>
       <?php if(isSet($_GET['errPasFils'])){ ?>
         <span class=erreur>Il faut choisir au moins un enfant pour le groupe père</span>

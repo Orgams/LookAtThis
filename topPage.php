@@ -19,6 +19,9 @@ $donnees = $req->fetch();
 $pseudonyme = $donnees['pseudonyme'];
 $req->closeCursor();
 
+
+/*echo "--------------------------------------<br/>";
+//section de test
 print_r($_SESSION);
 echo "<br/>";
 foreach ($_SESSION as $key => $value) {
@@ -26,5 +29,6 @@ foreach ($_SESSION as $key => $value) {
 	print_r($value);
 	echo "<br/>";
 }
+echo "--------------------------------------<br/>";*/
 ?>
 <!DOCTYPE html>

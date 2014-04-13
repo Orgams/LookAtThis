@@ -6,6 +6,9 @@
       include("enTete.php");
     ?>
     <form method="post" name="formulaire" action="ajoutLienFonction.php">
+      <?php if(isSet($_GET['ok'])){ ?>
+        <span class=success>Le lien <?php echo $_GET['ok']?> a été ajouté</span>
+      <?php } ?>
       <?php if(isSet($_GET['errUrlVide'])){ ?>
         <span class=erreur>L'URL du lien ne peut être vide</span>
       <?php } ?>

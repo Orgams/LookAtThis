@@ -18,7 +18,7 @@
       $_POST["groupe"] = array();
     }
     $groupes = array_merge($_POST['personne'],$_POST['groupe']);
-    
+    $groupes = chercherSousGroupe($groupes,$bdd);
     $req = $bdd->prepare('SELECT ID FROM lien WHERE url=?');
     $req->execute(array($url));
     $donnee = $req->fetch();
@@ -83,5 +83,5 @@
       $req->execute(array($idLien, $groupe));
     }
   }
-  header("Location: ajoutLien.php");
+  header("Location: ajoutLien.php?ok=$titre");
 ?>

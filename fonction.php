@@ -1,6 +1,5 @@
 <?php
 
-
 function modifTableauSession($action, $valeur, $nomTableau){
   if($action == 'ajouter' && !in_array($valeur, $_SESSION[$nomTableau]) ){
     array_push($_SESSION[$nomTableau],$valeur);
@@ -162,5 +161,27 @@ function afficherReq($requete, $parametre){
   print_r($parametre);
   echo "<br/>";
 
+}
+function chercherSousGroupe ($listeGroupe,$bdd){
+  $groupePlusSousGroupe = $listeGroupe;
+  
+  while (!empty($listeGroupe)) {
+    $place_holders_groupePlusSousGroupe = implode(',', array_fill(0, count($groupePlusSousGroupe), '?'));
+    $place_holders_listeGroupe = implode(',', array_fill(0, count($listeGroupe), '?'));
+
+    $requete = $bdd->prepare("SELECT groupeFils
+                           FROM groupe_groupe 
+                           WHERE groupePere in ($place_holders_groupePlusSousGroupe)
+                           AND groupeFils not in ($place_holders_listeGroupe)");
+    $parametre = array_merge($groupePlusSousGroupe,$listeGroupe);
+    $requete->execute($parametre);
+    $listeGroupe = array();
+    while ($donnees = $requete->fetch())
+    {
+      $listeGroupe = array_merge($listeGroupe,array($donnees[0]));
+    }
+    $groupePlusSousGroupe = array_merge($groupePlusSousGroupe,$listeGroupe);
+  }
+  return $groupePlusSousGroupe;
 }
 ?>
