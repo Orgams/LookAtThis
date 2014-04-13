@@ -156,10 +156,11 @@ function convertColor($color){
 }
 
 function afficherReq($requete, $parametre){
+  echo "<br/>------------------------------------------<br/>";
   print_r($requete);
   echo "<br/>";
   print_r($parametre);
-  echo "<br/>";
+  echo "<br/>------------------------------------------<br/>";
 
 }
 function chercherSousGroupe ($listeGroupe,$bdd){
@@ -171,9 +172,9 @@ function chercherSousGroupe ($listeGroupe,$bdd){
 
     $requete = $bdd->prepare("SELECT groupeFils
                            FROM groupe_groupe 
-                           WHERE groupePere in ($place_holders_groupePlusSousGroupe)
-                           AND groupeFils not in ($place_holders_listeGroupe)");
-    $parametre = array_merge($groupePlusSousGroupe,$listeGroupe);
+                           WHERE groupePere in ($place_holders_listeGroupe)
+                           AND groupeFils not in ($place_holders_groupePlusSousGroupe)");
+    $parametre = array_merge($listeGroupe,$groupePlusSousGroupe);
     $requete->execute($parametre);
     $listeGroupe = array();
     while ($donnees = $requete->fetch())
